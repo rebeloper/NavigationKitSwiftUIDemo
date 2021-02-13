@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		C9AB65F025D7DB5C001BC51C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AB65DB25D7DB5B001BC51C /* ContentView.swift */; };
 		C9AB65F125D7DB5C001BC51C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9AB65DC25D7DB5C001BC51C /* Assets.xcassets */; };
 		C9AB65F225D7DB5C001BC51C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9AB65DC25D7DB5C001BC51C /* Assets.xcassets */; };
+		C9AB65FF25D7DBB3001BC51C /* NavigationKit in Frameworks */ = {isa = PBXBuildFile; productRef = C9AB65FE25D7DBB3001BC51C /* NavigationKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9AB65FF25D7DBB3001BC51C /* NavigationKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +108,9 @@
 			dependencies = (
 			);
 			name = "NavigationKitSwiftUIDemo (iOS)";
+			packageProductDependencies = (
+				C9AB65FE25D7DBB3001BC51C /* NavigationKit */,
+			);
 			productName = "NavigationKitSwiftUIDemo (iOS)";
 			productReference = C9AB65E125D7DB5C001BC51C /* NavigationKitSwiftUIDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -153,6 +158,9 @@
 				Base,
 			);
 			mainGroup = C9AB65D425D7DB5A001BC51C;
+			packageReferences = (
+				C9AB65FD25D7DBB3001BC51C /* XCRemoteSwiftPackageReference "NavigationKit" */,
+			);
 			productRefGroup = C9AB65E225D7DB5C001BC51C /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -439,6 +447,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C9AB65FD25D7DBB3001BC51C /* XCRemoteSwiftPackageReference "NavigationKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rebeloper/NavigationKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.4.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C9AB65FE25D7DBB3001BC51C /* NavigationKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9AB65FD25D7DBB3001BC51C /* XCRemoteSwiftPackageReference "NavigationKit" */;
+			productName = NavigationKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C9AB65D525D7DB5A001BC51C /* Project object */;
 }
