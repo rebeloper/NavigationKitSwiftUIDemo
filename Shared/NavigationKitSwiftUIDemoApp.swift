@@ -26,6 +26,12 @@ struct NavigationKitSwiftUIDemoApp: App {
                         Image(systemName: "2.circle.fill")
                     }
                     .tag(2)
+                
+                PresentationContentView()
+                    .tabItem {
+                        Image(systemName: "3.circle.fill")
+                    }
+                    .tag(3)
             }
         }
     }
