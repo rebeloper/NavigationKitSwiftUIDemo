@@ -12,12 +12,11 @@ struct ContentView: View {
     @State private var isPushedViewActive: Bool = false
     
     @Environment(\.presentationMode) private var presentationMode
-    @Environment(\.rootPresentationMode) private var rootPresentationMode
     
     var body: some View {
-        NavigationKitView(isActive: $isPushedViewActive) {
+        NKView(isActive: $isPushedViewActive) {
             VStack(spacing: 12) {
-                NavigationKitLink(isActive: $isPushedViewActive) {
+                NKPush(isActive: $isPushedViewActive) {
                     ContentView2()
                 } label: {
                     DemoButtonLabel(text: "Push", imageSystemName: "chevron.forward", isImageLeading: false)
@@ -50,7 +49,7 @@ struct ContentView: View {
 //                                    }),
 //                                 backgroundView:
 //                                    NavigationBarDefaultBackgroundView())
-            .largeNavigationBar(titleView:
+            .nkLargeNavigationBar(titleView:
                                     Text("Root").bold(),
                                 leadingView:
                                     Button(action: {
@@ -78,7 +77,7 @@ struct ContentView2: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            NavigationKitLink(isActive: $isPushedViewActive) {
+            NKPush(isActive: $isPushedViewActive) {
                 ContentView3()
             } label: {
                 DemoButtonLabel(text: "Push", imageSystemName: "chevron.forward", isImageLeading: false)
@@ -100,7 +99,7 @@ struct ContentView2: View {
         }
         .padding()
         .navigationBarHidden(true)
-        .inlineNavigationBar(titleView:
+        .nkInlineNavigationBar(titleView:
                                 Text("Two").bold(),
                              leadingView:
                                 Button(action: {
@@ -127,7 +126,7 @@ struct ContentView3: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            NavigationKitLink(isActive: $isPushedViewActive) {
+            NKPush(isActive: $isPushedViewActive) {
                 ContentView4()
             } label: {
                 EmptyView()
@@ -180,7 +179,7 @@ struct ContentView4: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            NavigationKitLink(isActive: $isPushedViewActive) {
+            NKPush(isActive: $isPushedViewActive) {
                 ContentView5()
             } label: {
                 EmptyView()

@@ -86,13 +86,13 @@ struct PresentationContentView: View {
     
     var body: some View {
         VStack {
-            NavigationKitSheet(isActive: $showSheet) {
+            NKSheet(isActive: $showSheet) {
                 PresentationContentView2().disableSwipeToDismiss()
             } label: {
                 DemoButtonLabel(text: "Present", imageSystemName: "arrow.up.doc.fill", isImageLeading: false)
             }
             
-            NavigationKitSheet(isActive: $showContentViewSheet) {
+            NKSheet(isActive: $showContentViewSheet) {
                 ContentView()
             } label: {
                 DemoButtonLabel(text: "Present Stack Navigation", imageSystemName: "arrow.up.doc.fill", isImageLeading: false)
@@ -100,7 +100,7 @@ struct PresentationContentView: View {
             
         }
         .padding()
-        .inlineNavigationBar(titleView:
+        .nkInlineNavigationBar(titleView:
                                 Text("One").bold(),
                              leadingView:
                                 EmptyView(),
@@ -119,7 +119,7 @@ struct PresentationContentView2: View {
     
     var body: some View {
         VStack {
-            NavigationKitSheet(isActive: $showSheet) {
+            NKSheet(isActive: $showSheet) {
                 PresentationContentView3()
             } label: {
                 DemoButtonLabel(text: "Present", imageSystemName: "arrow.up.doc.fill", isImageLeading: false)
@@ -132,7 +132,7 @@ struct PresentationContentView2: View {
             }
         }
         .padding()
-        .inlineNavigationBar(titleView:
+        .nkInlineNavigationBar(titleView:
                                 Text("Two").bold(),
                              leadingView:
                                 EmptyView(),
@@ -152,7 +152,7 @@ struct PresentationContentView3: View {
     
     var body: some View {
         VStack {
-            NavigationKitSheet(isActive: $showSheet) {
+            NKSheet(isActive: $showSheet) {
                 PresentationContentView4()
             } label: {
                 DemoButtonLabel(text: "Present", imageSystemName: "arrow.up.doc.fill", isImageLeading: false)
@@ -160,13 +160,14 @@ struct PresentationContentView3: View {
             
             HStack {
                 Button {
-                    presentationMode.wrappedValue.dismiss()
+//                    presentationMode.wrappedValue.dismiss()
+                    NKManager.dismiss(with: presentationMode)
                 } label: {
                     DemoButtonLabel(text: "Dismiss", imageSystemName: "arrow.down.doc.fill", isImageLeading: false)
                 }
                 
                 Button {
-                    NavigationKitManager.dismissTwo(with: presentationsMode)
+                    NKManager.dismissTwo(with: presentationsMode)
                 } label: {
                     DemoButtonLabel(text: "Dismiss Two", imageSystemName: "arrow.down.doc.fill", isImageLeading: false)
                 }
@@ -179,7 +180,7 @@ struct PresentationContentView3: View {
                 .padding(.top, 12)
         }
         .padding()
-        .inlineNavigationBar(titleView:
+        .nkInlineNavigationBar(titleView:
                                 Text("Three").bold(),
                              leadingView:
                                 EmptyView(),
@@ -209,7 +210,7 @@ struct PresentationContentView4: View {
                 .padding(.top, 12)
         }
         .padding()
-        .inlineNavigationBar(titleView:
+        .nkInlineNavigationBar(titleView:
                                 Text("Four").bold(),
                              leadingView:
                                 EmptyView(),
