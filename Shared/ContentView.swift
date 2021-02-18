@@ -53,7 +53,8 @@ struct ContentView: View {
                                     Text("Root").bold(),
                                 leadingView:
                                     Button(action: {
-                                        presentationMode.wrappedValue.dismiss()
+//                                        presentationMode.wrappedValue.dismiss()
+                                        NavigationKitManager.dismiss(with: presentationMode)
                                     }, label: {
                                         Image(systemName: "arrow.down.doc.fill")
                                         Text("Dismiss")
@@ -90,13 +91,15 @@ struct ContentView2: View {
             }
 
             Button {
-                presentationMode.wrappedValue.dismiss()
+//                presentationMode.wrappedValue.dismiss()
+                NavigationKitManager.dismiss(with: presentationMode)
             } label: {
                 DemoButtonLabel(text: "Pop", imageSystemName: "chevron.backward", isImageLeading: true)
             }
 
             Button {
-                rootPresentationMode.wrappedValue.dismiss()
+//                rootPresentationMode.wrappedValue.dismiss()
+                NavigationKitManager.popToRoot(with: rootPresentationMode)
             } label: {
                 DemoButtonLabel(text: "Pop to Root", imageSystemName: "chevron.backward.2", isImageLeading: true)
             }
@@ -109,7 +112,8 @@ struct ContentView2: View {
                                 Text("Two").bold(),
                              leadingView:
                                 Button(action: {
-                                    presentationMode.wrappedValue.dismiss()
+//                                    presentationMode.wrappedValue.dismiss()
+                                    NavigationKitManager.dismiss(with: presentationMode)
                                 }, label: {
                                     Image(systemName: "chevron.backward")
                                     Text("Go Back")
@@ -146,13 +150,15 @@ struct ContentView3: View {
             }
             
             Button {
-                presentationMode.wrappedValue.dismiss()
+//                presentationMode.wrappedValue.dismiss()
+                NavigationKitManager.dismiss(with: presentationMode)
             } label: {
                 DemoButtonLabel(text: "Pop", imageSystemName: "chevron.backward", isImageLeading: true)
             }
             
             Button {
-                rootPresentationMode.wrappedValue.dismiss()
+//                rootPresentationMode.wrappedValue.dismiss()
+                NavigationKitManager.popToRoot(with: rootPresentationMode)
             } label: {
                 DemoButtonLabel(text: "Pop to Root", imageSystemName: "chevron.backward.2", isImageLeading: true)
             }
@@ -202,13 +208,15 @@ struct ContentView4: View {
             }
             
             Button {
-                presentationMode.wrappedValue.dismiss()
+//                presentationMode.wrappedValue.dismiss()
+                NavigationKitManager.dismiss(with: presentationMode)
             } label: {
                 DemoButtonLabel(text: "Pop", imageSystemName: "chevron.backward", isImageLeading: true)
             }
             
             Button {
-                rootPresentationMode.wrappedValue.dismiss()
+//                rootPresentationMode.wrappedValue.dismiss()
+                NavigationKitManager.popToRoot(with: rootPresentationMode)
             } label: {
                 DemoButtonLabel(text: "Pop to Root", imageSystemName: "chevron.backward.2", isImageLeading: true)
             }
@@ -231,13 +239,15 @@ struct ContentView5: View {
         VStack(spacing: 12) {
             
             Button {
-                presentationMode.wrappedValue.dismiss()
+//                presentationMode.wrappedValue.dismiss()
+                NavigationKitManager.dismiss(with: presentationMode)
             } label: {
                 DemoButtonLabel(text: "Pop", imageSystemName: "chevron.backward", isImageLeading: true)
             }
             
             Button {
-                rootPresentationMode.wrappedValue.dismiss()
+//                rootPresentationMode.wrappedValue.dismiss()
+                NavigationKitManager.popToRoot(with: rootPresentationMode)
             } label: {
                 DemoButtonLabel(text: "Pop to Root", imageSystemName: "chevron.backward.2", isImageLeading: true)
             }
