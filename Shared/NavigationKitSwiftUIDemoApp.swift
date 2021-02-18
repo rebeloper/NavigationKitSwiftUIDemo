@@ -32,6 +32,7 @@ struct NavigationKitSwiftUIDemoApp: App {
                         Image(systemName: "3.circle.fill")
                     }
                     .tag(3)
+                
             }
         }
     }

@@ -8,76 +8,76 @@
 import SwiftUI
 import NavigationKit
 
-struct PresentationKey: EnvironmentKey {
-    static let defaultValue: [Binding<Bool>] = []
-}
+//struct PresentationsModeKey: EnvironmentKey {
+//    static let defaultValue: [Binding<Bool>] = []
+//}
+//
+//extension EnvironmentValues {
+//    var presentationsMode: [Binding<Bool>] {
+//        get { return self[PresentationsModeKey] }
+//        set { self[PresentationsModeKey] = newValue }
+//    }
+//}
 
-extension EnvironmentValues {
-    var presentationsMode: [Binding<Bool>] {
-        get { return self[PresentationKey] }
-        set { self[PresentationKey] = newValue }
-    }
-}
-
-public struct NavigationKitSheet<Destination: View, Label: View>: View {
-    
-    @Environment(\.presentationsMode) private var presentationsMode
-    
-    @Binding private var isActive: Bool
-    private let destination: () -> Destination
-    private let onDismiss: (() -> Void)?
-    private let label: () -> Label
-    
-    public init(isActive: Binding<Bool>, destination: @escaping () -> Destination, onDismiss: (() -> Void)? = nil, label: @escaping () -> Label) {
-        self._isActive = isActive
-        self.destination = destination
-        self.onDismiss = onDismiss
-        self.label = label
-    }
-    
-    public var body: some View {
-        Button {
-            isActive.present()
-        } label: {
-            label()
-        }
-        .sheet(isPresented: $isActive, onDismiss: onDismiss) {
-            destination()
-                .environment(\.presentationsMode, presentationsMode + [$isActive])
-        }
-
-    }
-}
-
-public struct NavigationKitFullScreenCover<Destination: View, Label: View>: View {
-    
-    @Environment(\.presentationsMode) private var presentationsMode
-    
-    @Binding private var isActive: Bool
-    private let destination: () -> Destination
-    private let onDismiss: (() -> Void)?
-    private let label: () -> Label
-    
-    public init(isActive: Binding<Bool>, destination: @escaping () -> Destination, onDismiss: (() -> Void)? = nil, label: @escaping () -> Label) {
-        self._isActive = isActive
-        self.destination = destination
-        self.onDismiss = onDismiss
-        self.label = label
-    }
-    
-    public var body: some View {
-        Button {
-            isActive.present()
-        } label: {
-            label()
-        }
-        .fullScreenCover(isPresented: $isActive, onDismiss: onDismiss) {
-            destination()
-                .environment(\.presentationsMode, presentationsMode + [$isActive])
-        }
-
-    }
-}
+//public struct NavigationKitSheet<Destination: View, Label: View>: View {
+//    
+//    @Environment(\.presentationsMode) private var presentationsMode
+//    
+//    @Binding private var isActive: Bool
+//    private let destination: () -> Destination
+//    private let onDismiss: (() -> Void)?
+//    private let label: () -> Label
+//    
+//    public init(isActive: Binding<Bool>, destination: @escaping () -> Destination, onDismiss: (() -> Void)? = nil, label: @escaping () -> Label) {
+//        self._isActive = isActive
+//        self.destination = destination
+//        self.onDismiss = onDismiss
+//        self.label = label
+//    }
+//    
+//    public var body: some View {
+//        Button {
+//            isActive.present()
+//        } label: {
+//            label()
+//        }
+//        .sheet(isPresented: $isActive, onDismiss: onDismiss) {
+//            destination()
+//                .environment(\.presentationsMode, presentationsMode + [$isActive])
+//        }
+//
+//    }
+//}
+//
+//public struct NavigationKitFullScreenCover<Destination: View, Label: View>: View {
+//    
+//    @Environment(\.presentationsMode) private var presentationsMode
+//    
+//    @Binding private var isActive: Bool
+//    private let destination: () -> Destination
+//    private let onDismiss: (() -> Void)?
+//    private let label: () -> Label
+//    
+//    public init(isActive: Binding<Bool>, destination: @escaping () -> Destination, onDismiss: (() -> Void)? = nil, label: @escaping () -> Label) {
+//        self._isActive = isActive
+//        self.destination = destination
+//        self.onDismiss = onDismiss
+//        self.label = label
+//    }
+//    
+//    public var body: some View {
+//        Button {
+//            isActive.present()
+//        } label: {
+//            label()
+//        }
+//        .fullScreenCover(isPresented: $isActive, onDismiss: onDismiss) {
+//            destination()
+//                .environment(\.presentationsMode, presentationsMode + [$isActive])
+//        }
+//
+//    }
+//}
 
 struct PresentationContentView: View {
     
@@ -158,16 +158,18 @@ struct PresentationContentView3: View {
                 DemoButtonLabel(text: "Present", imageSystemName: "arrow.up.doc.fill", isImageLeading: false)
             }
             
-            Button {
-                presentationMode.wrappedValue.dismiss()
-            } label: {
-                DemoButtonLabel(text: "Dismiss", imageSystemName: "arrow.down.doc.fill", isImageLeading: false)
-            }
-            
-            Button {
-                NavigationKitManager.dismissTwo(with: presentationsMode)
-            } label: {
-                DemoButtonLabel(text: "Dismiss Two Sheets", imageSystemName: "arrow.down.doc.fill", isImageLeading: false)
+            HStack {
+                Button {
+                    presentationMode.wrappedValue.dismiss()
+                } label: {
+                    DemoButtonLabel(text: "Dismiss", imageSystemName: "arrow.down.doc.fill", isImageLeading: false)
+                }
+                
+                Button {
+                    NavigationKitManager.dismissTwo(with: presentationsMode)
+                } label: {
+                    DemoButtonLabel(text: "Dismiss Two", imageSystemName: "arrow.down.doc.fill", isImageLeading: false)
+                }
             }
             
             Text("'NavigationKitSheet' and 'NavigationKitFullScreenCover' has the ability to only 'Dismiss Two Sheets'")
@@ -200,7 +202,7 @@ struct PresentationContentView4: View {
                 DemoButtonLabel(text: "Dismiss", imageSystemName: "arrow.down.doc.fill", isImageLeading: false)
             }
             
-            Text("'NavigationKitSheet' and 'NavigationKitFullScreenCover' has the ability to 'Dismiss Two Sheets'")
+            Text("'NavigationKitSheet' and 'NavigationKitFullScreenCover' has the ability to only 'Dismiss Two Sheets'")
                 .foregroundColor(.gray)
                 .font(.footnote)
                 .multilineTextAlignment(.center)
@@ -219,10 +221,10 @@ struct PresentationContentView4: View {
 }
 
 
-struct NavigationKitManager {
-    static func dismissTwo(with presentationsMode: [Binding<Bool>]) {
-        presentationsMode.forEach {
-            $0.wrappedValue.dismiss()
-        }
-    }
-}
+//struct NavigationKitManager {
+//    static func dismissTwo(with presentationsMode: [Binding<Bool>]) {
+//        presentationsMode.forEach {
+//            $0.wrappedValue.dismiss()
+//        }
+//    }
+//}
