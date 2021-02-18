@@ -14,9 +14,9 @@ struct ContentView: View {
     @Environment(\.presentationMode) private var presentationMode
     
     var body: some View {
-        NKView(isActive: $isPushedViewActive) {
+        NavigationKitView(isActive: $isPushedViewActive) {
             VStack(spacing: 12) {
-                NKPush(isActive: $isPushedViewActive) {
+                PushView(isActive: $isPushedViewActive) {
                     ContentView2()
                 } label: {
                     DemoButtonLabel(text: "Push", imageSystemName: "chevron.forward", isImageLeading: false)
@@ -33,11 +33,11 @@ struct ContentView: View {
             }
             .padding()
             .navigationBarHidden(true)
-//            .customNavigationBar(titleView:
+//            .nkCustomNavigationBar(titleView:
 //                                    Text("Root").bold(),
 //                                 backgroundView:
 //                                    Color(.systemOrange).ignoresSafeArea())
-//            .inlineNavigationBar(titleView:
+//            .nkInlineNavigationBar(titleView:
 //                                    Text("Root").bold(),
 //                                 leadingView:
 //                                    EmptyView(),
@@ -71,13 +71,19 @@ struct ContentView: View {
 // MARK: -
 
 struct ContentView2: View {
-    @State private var isPushedViewActive: Bool = false
+    
     @Environment(\.presentationMode) private var presentationMode
     @Environment(\.rootPresentationMode) private var rootPresentationMode
 
     var body: some View {
         VStack(spacing: 12) {
-            NKPush(isActive: $isPushedViewActive) {
+//            NKPush(isActive: $isPushedViewActive) {
+//                ContentView3()
+//            } label: {
+//                DemoButtonLabel(text: "Push", imageSystemName: "chevron.forward", isImageLeading: false)
+//            }
+
+            PushView {
                 ContentView3()
             } label: {
                 DemoButtonLabel(text: "Push", imageSystemName: "chevron.forward", isImageLeading: false)
@@ -126,7 +132,7 @@ struct ContentView3: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            NKPush(isActive: $isPushedViewActive) {
+            PushView(isActive: $isPushedViewActive) {
                 ContentView4()
             } label: {
                 EmptyView()
@@ -179,10 +185,13 @@ struct ContentView4: View {
     
     var body: some View {
         VStack(spacing: 12) {
-            NKPush(isActive: $isPushedViewActive) {
+//            NKPush(isActive: $isPushedViewActive) {
+//                ContentView5()
+//            } label: {
+//                EmptyView()
+//            }
+            PushViewLink(isActive: $isPushedViewActive) {
                 ContentView5()
-            } label: {
-                EmptyView()
             }
             
             Button {
@@ -265,75 +274,3 @@ struct DemoButtonLabel: View {
         .cornerRadius(8)
     }
 }
-
-
-
-
-//public struct NavigationKitSheetView<Content: View>: View {
-//    @Binding private var isActive : Bool
-//    private let content: () -> Content
-//
-//    public init(isActive: Binding<Bool>, content: @escaping () -> Content) {
-//        self._isActive = isActive
-//        self.content = content
-//    }
-//
-//    public var body: some View {
-//        content()
-//            .environment(\.rootPresentationMode, $isActive)
-//    }
-//}
-
-//public struct NavigationKitSheet<Destination: View, Label: View>: View {
-//    @Binding private var isActive: Bool
-//    private let destination: () -> Destination
-//    private let onDismiss: (() -> Void)?
-//    private let label: () -> Label
-//    
-//    public init(isActive: Binding<Bool>, destination: @escaping () -> Destination, onDismiss: (() -> Void)? = nil, label: @escaping () -> Label) {
-//        self._isActive = isActive
-//        self.destination = destination
-//        self.onDismiss = onDismiss
-//        self.label = label
-//    }
-//    
-//    public var body: some View {
-//        Button {
-//            isActive.present()
-//        } label: {
-//            label()
-//        }
-//        .sheet(isPresented: $isActive, onDismiss: onDismiss) {
-//            destination()
-//        }
-//
-//    }
-//}
-
-//public struct NavigationKitFullScreenCover<Destination: View, Label: View>: View {
-//    @Binding private var isActive: Bool
-//    private let destination: () -> Destination
-//    private let onDismiss: (() -> Void)?
-//    private let label: () -> Label
-//    
-//    public init(isActive: Binding<Bool>, destination: @escaping () -> Destination, onDismiss: (() -> Void)? = nil, label: @escaping () -> Label) {
-//        self._isActive = isActive
-//        self.destination = destination
-//        self.onDismiss = onDismiss
-//        self.label = label
-//    }
-//    
-//    public var body: some View {
-//        Button {
-//            isActive.present()
-//        } label: {
-//            label()
-//        }
-//        .fullScreenCover(isPresented: $isActive, onDismiss: onDismiss) {
-//            destination()
-//        }
-//
-//    }
-//}
-
-// https://stackoverflow.com/a/65646180/4514671

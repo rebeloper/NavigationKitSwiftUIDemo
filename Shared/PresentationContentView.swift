@@ -8,77 +8,6 @@
 import SwiftUI
 import NavigationKit
 
-//struct PresentationsModeKey: EnvironmentKey {
-//    static let defaultValue: [Binding<Bool>] = []
-//}
-//
-//extension EnvironmentValues {
-//    var presentationsMode: [Binding<Bool>] {
-//        get { return self[PresentationsModeKey] }
-//        set { self[PresentationsModeKey] = newValue }
-//    }
-//}
-
-//public struct NavigationKitSheet<Destination: View, Label: View>: View {
-//    
-//    @Environment(\.presentationsMode) private var presentationsMode
-//    
-//    @Binding private var isActive: Bool
-//    private let destination: () -> Destination
-//    private let onDismiss: (() -> Void)?
-//    private let label: () -> Label
-//    
-//    public init(isActive: Binding<Bool>, destination: @escaping () -> Destination, onDismiss: (() -> Void)? = nil, label: @escaping () -> Label) {
-//        self._isActive = isActive
-//        self.destination = destination
-//        self.onDismiss = onDismiss
-//        self.label = label
-//    }
-//    
-//    public var body: some View {
-//        Button {
-//            isActive.present()
-//        } label: {
-//            label()
-//        }
-//        .sheet(isPresented: $isActive, onDismiss: onDismiss) {
-//            destination()
-//                .environment(\.presentationsMode, presentationsMode + [$isActive])
-//        }
-//
-//    }
-//}
-//
-//public struct NavigationKitFullScreenCover<Destination: View, Label: View>: View {
-//    
-//    @Environment(\.presentationsMode) private var presentationsMode
-//    
-//    @Binding private var isActive: Bool
-//    private let destination: () -> Destination
-//    private let onDismiss: (() -> Void)?
-//    private let label: () -> Label
-//    
-//    public init(isActive: Binding<Bool>, destination: @escaping () -> Destination, onDismiss: (() -> Void)? = nil, label: @escaping () -> Label) {
-//        self._isActive = isActive
-//        self.destination = destination
-//        self.onDismiss = onDismiss
-//        self.label = label
-//    }
-//    
-//    public var body: some View {
-//        Button {
-//            isActive.present()
-//        } label: {
-//            label()
-//        }
-//        .fullScreenCover(isPresented: $isActive, onDismiss: onDismiss) {
-//            destination()
-//                .environment(\.presentationsMode, presentationsMode + [$isActive])
-//        }
-//
-//    }
-//}
-
 struct PresentationContentView: View {
     
     @State private var showSheet = false
@@ -86,13 +15,13 @@ struct PresentationContentView: View {
     
     var body: some View {
         VStack {
-            NKSheet(isActive: $showSheet) {
+            SheetView(isActive: $showSheet) {
                 PresentationContentView2().disableSwipeToDismiss()
             } label: {
                 DemoButtonLabel(text: "Present", imageSystemName: "arrow.up.doc.fill", isImageLeading: false)
             }
             
-            NKSheet(isActive: $showContentViewSheet) {
+            SheetView(isActive: $showContentViewSheet) {
                 ContentView()
             } label: {
                 DemoButtonLabel(text: "Present Stack Navigation", imageSystemName: "arrow.up.doc.fill", isImageLeading: false)
@@ -119,7 +48,7 @@ struct PresentationContentView2: View {
     
     var body: some View {
         VStack {
-            NKSheet(isActive: $showSheet) {
+            SheetView(isActive: $showSheet) {
                 PresentationContentView3()
             } label: {
                 DemoButtonLabel(text: "Present", imageSystemName: "arrow.up.doc.fill", isImageLeading: false)
@@ -152,7 +81,7 @@ struct PresentationContentView3: View {
     
     var body: some View {
         VStack {
-            NKSheet(isActive: $showSheet) {
+            SheetView(isActive: $showSheet) {
                 PresentationContentView4()
             } label: {
                 DemoButtonLabel(text: "Present", imageSystemName: "arrow.up.doc.fill", isImageLeading: false)
@@ -161,13 +90,13 @@ struct PresentationContentView3: View {
             HStack {
                 Button {
 //                    presentationMode.wrappedValue.dismiss()
-                    NKManager.dismiss(with: presentationMode)
+                    NavigationKitManager.dismiss(with: presentationMode)
                 } label: {
                     DemoButtonLabel(text: "Dismiss", imageSystemName: "arrow.down.doc.fill", isImageLeading: false)
                 }
                 
                 Button {
-                    NKManager.dismissTwo(with: presentationsMode)
+                    NavigationKitManager.dismissTwo(with: presentationsMode)
                 } label: {
                     DemoButtonLabel(text: "Dismiss Two", imageSystemName: "arrow.down.doc.fill", isImageLeading: false)
                 }
@@ -220,12 +149,3 @@ struct PresentationContentView4: View {
                                 NavigationBarDefaultBackgroundView())
     }
 }
-
-
-//struct NavigationKitManager {
-//    static func dismissTwo(with presentationsMode: [Binding<Bool>]) {
-//        presentationsMode.forEach {
-//            $0.wrappedValue.dismiss()
-//        }
-//    }
-//}
